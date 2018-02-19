@@ -1,5 +1,5 @@
-= Part 1: Parse the DICOM images and Contour Files =
-== Questions and Answers == 
+# Part 1: Parse the DICOM images and Contour Files
+## Questions and Answers
 - How did you verify that you are parsing the contours correctly?
 
 I didn't do that in the exercise but if I do, I would check the the contour coordinates are within the image boundaries. Also the the first and last coordinates in the contour file should meet within 0.5.
@@ -16,8 +16,8 @@ In this case, I would use pyspark to execute the process_image function given th
 
 With the approach mentioned above, pyspark already guarantee fault-tolerance so retry on failure is done by the framework. 
 
-= Part 2: Model training pipeline =
-== Questions and Answers ==
+# Part 2: Model training pipeline
+## Questions and Answers
 
 - How did you choose to load each batch of data asynchronously, and why did you choose that method? Were there other methods that you considered - what are the pros/cons of each?
 
