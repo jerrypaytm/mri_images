@@ -20,9 +20,10 @@ def parse_contour_file(filename):
         for line in infile:
             coords = line.strip().split()
 
-            x_coord = float(coords[0])
-            y_coord = float(coords[1])
-            coords_lst.append((x_coord, y_coord))
+            if len(coords) == 2:
+                x_coord = float(coords[0])
+                y_coord = float(coords[1])
+                coords_lst.append((x_coord, y_coord))
 
     return coords_lst
 
@@ -31,7 +32,7 @@ def parse_dicom_file(filename):
     """Parse the given DICOM filename
 
     :param filename: filepath to the DICOM file to parse
-    :return: dictionary with DICOM image data
+    :return: DICOM image data
     """
 
     try:
