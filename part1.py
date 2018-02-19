@@ -29,7 +29,6 @@ def load_link_file(link_filepath) :
 def process_directory(input_directory) :
     linkPath = args.input_directory + '/link.csv'
     link = load_link_file(linkPath)
-    result = []
     for patient_id in link.keys():
         img_path = input_directory + '/dicoms/' + patient_id 
         for f in listdir(img_path) :
@@ -40,10 +39,9 @@ def process_directory(input_directory) :
                 contour_id=link[patient_id]
                 contour_path = input_directory + '/contourfiles/' + contour_id + '/i-contours/' + 'IM-0001-' + img_number + '-icontour-manual.txt'
                 if isfile(contour_path): 
-                    result.append(process_image(full_path, contour_path))
+                    yield process_image(full_path, contour_path)
                 else :
-                    result.append(process_image(full_path))
-    return result
+                    yield process_image(full_path)
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser(prog='Parsing DICOM images and contour files')
@@ -56,3 +54,6 @@ if __name__ == "__main__":
     )
     args = arg_parser.parse_args()
     images = process_directory(args.input_directory)
+    for img in images :
+        #loop through the images
+        img
